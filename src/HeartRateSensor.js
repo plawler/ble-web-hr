@@ -1,15 +1,22 @@
 export class HeartRateSensor {
     
     characteristic;
-
-    constructor() {
-        this.connect = this.connect.bind(this) // why? https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback/20279485#20279485
+    currentHeartRate;
+    onHeartRateChanged;
+    constructor(onHeartRateChanged) {
+        this.connect = this.connect.bind(this)
+        this.onHeartRateChanged = onHeartRateChanged;
     }
 
     handleHeartRateChanged(event) {
         const heartRate = event.target.value.getUint8(1);
-        console.log('heart rate changed ' + this.currentHeartRate);        
-        return heartRate;
+        console.log('heart rate changed ' + heartRate);
+        if(this.currentHeartRate !== heartRate) {
+            this.currentHeartRate = heartRate;
+            if(this.onHeartRateChanged) {
+                this.onHeartRateChanged(heartRate);
+            }
+        }                        
     }
 
     connect() {
