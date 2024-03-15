@@ -4,7 +4,6 @@ import { useSensorManager } from "./SensorManagerContext";
 function HeartRateComponent() {
     const sensorManager = useSensorManager();
     const handleConnectSensor = () => {
-        debugger;
         if(sensorManager.heartRateSensorConnect) {
             sensorManager.heartRateSensorConnect();
         }

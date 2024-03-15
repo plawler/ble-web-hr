@@ -1,11 +1,11 @@
-import React, { useContext, useRef, useState, useEffect, useMemo } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { HeartRateSensor } from "./HeartRateSensor";
 
 const SensorManagerContext = React.createContext(undefined);
 
 function SensorManagerProvider({children}) {
     const [heartRate, setHeartRate] = useState(undefined);
-    const heartRateSensor = useRef(new HeartRateSensor(() => setHeartRate(data)));
+    const heartRateSensor = useRef(new HeartRateSensor((data) => setHeartRate(data)));
 
     const contextValue = {        
         heartRate,
