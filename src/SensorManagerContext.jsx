@@ -5,7 +5,7 @@ const SensorManagerContext = React.createContext(undefined);
 
 function SensorManagerProvider({children}) {
     const [heartRate, setHeartRate] = useState(undefined);
-    const heartRateSensor = useRef(new HeartRateSensor((data) => setHeartRate(data)));
+    const heartRateSensor = useRef(new HeartRateSensor(setHeartRate));
 
     const contextValue = {        
         heartRate,
